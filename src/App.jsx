@@ -22,9 +22,9 @@ const books = [
   }
 ];
 
-const formMessage = (welcomeObj) => {
-  return welcomeObj.greeting + ', ' + welcomeObj.title;
-}
+const formMessage = (welcomeObj) => (
+  welcomeObj.greeting + ', ' + welcomeObj.title
+);
 
 const App = () => {
   const welcome = {
@@ -33,47 +33,43 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>{formMessage(welcome)}</h1>
+  <div>
+    <h1>{formMessage(welcome)}</h1>
 
-      <Search />
+    <Search />
 
-      <hr />
+    <hr />
 
-      <List />
+    <List />
 
-    </div>
+  </div>
   );
 }
 
-const Search = () => {
-  return (
-    <div>
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" />
-    </div>
-  );
-}
+const Search = () => (
+  <div>
+    <label htmlFor="search">Search: </label>
+    <input id="search" type="text" />
+  </div>
+);
 
-const List = () => {
-  return (
-    <div>
-      <ul>
-        {
-          books.map(function (item) {
-            return (
-              <li key={item.objectId}>
-                <span><a href={item.url}>{item.title}</a></span>
-                <span>{item.author}</span>
-                <span>{item.num_comments}</span>
-                <span>{item.points}</span>
-              </li>
-            );
-          })
-        }
-      </ul>
-    </div>
-  );
-}
+const List = () => (
+  <div>
+    <ul>
+      {
+        books.map((item) => {
+          return (
+            <li key={item.objectId}>
+              <span><a href={item.url}>{item.title}</a></span>
+              <span>{item.author}</span>
+              <span>{item.num_comments}</span>
+              <span>{item.points}</span>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+);
 
 export default App;
