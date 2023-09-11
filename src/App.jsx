@@ -3,30 +3,30 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-const books = [
-  {
-    title: 'React',
-    url: 'https://reactjs.org/',
-    author: 'Jordan Walke',
-    num_comments: 3,
-    points: 10,
-    objectId: 0
-  },
-  {
-    title: 'Redux',
-    url: 'https://redux.js.org',
-    author: 'Dan Abramov. Andrew Clark',
-    num_comments: 2,
-    points: 5,
-    objectId: 1
-  }
-];
-
 const formMessage = (welcomeObj) => (
   welcomeObj.greeting + ', ' + welcomeObj.title
 );
 
 const App = () => {
+  const stories = [
+    {
+      title: 'React',
+      url: 'https://reactjs.org/',
+      author: 'Jordan Walke',
+      num_comments: 3,
+      points: 10,
+      objectId: 0
+    },
+    {
+      title: 'Redux',
+      url: 'https://redux.js.org',
+      author: 'Dan Abramov. Andrew Clark',
+      num_comments: 2,
+      points: 5,
+      objectId: 1
+    }
+  ];
+
   const welcome = {
     greeting: 'Hey',
     title: 'I am React'
@@ -40,7 +40,7 @@ const App = () => {
 
       <hr />
 
-      <List />
+      <List list={stories} />
 
     </div>
   );
@@ -51,6 +51,7 @@ const Search = () => {
     console.log(event);
     console.log(event.target.value);
   };
+
   return (
     <div>
       <label htmlFor="search">Search: </label>
@@ -59,23 +60,25 @@ const Search = () => {
   );
 }
 
-const List = () => (
+const List = (props) => (
   <div>
     <ul>
       {
-        books.map((item) => {
-          return (
-            <li key={item.objectId}>
-              <span><a href={item.url}>{item.title}</a></span>
-              <span>{item.author}</span>
-              <span>{item.num_comments}</span>
-              <span>{item.points}</span>
-            </li>
-          );
-        })
+        props.list.map((item) => (
+          <Item key={item.objectId} item={item} />
+        ))
       }
     </ul>
   </div>
+);
+
+const Item = (props) => (
+  <li>
+    <span><a href={props.item.url}>{props.item.title}</a></span>
+    <span>{props.item.author}</span>
+    <span>{props.item.num_comments}</span>
+    <span>{props.item.points}</span>
+  </li>
 );
 
 export default App;
