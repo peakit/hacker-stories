@@ -22,11 +22,11 @@ const books = [
   }
 ];
 
-function formMessage(welcomeObj) {
+const formMessage = (welcomeObj) => {
   return welcomeObj.greeting + ', ' + welcomeObj.title;
 }
 
-function App() {
+const App = () => {
   const welcome = {
     greeting: 'Hey',
     title: 'I am React'
@@ -46,7 +46,7 @@ function App() {
   );
 }
 
-function Search() {
+const Search = () => {
   return (
     <div>
       <label htmlFor="search">Search: </label>
@@ -55,7 +55,7 @@ function Search() {
   );
 }
 
-function List() {
+const List = () => {
   return (
     <div>
       <ul>
