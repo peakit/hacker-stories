@@ -1,6 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react';
 import './App.css'
 
 const formMessage = (welcomeObj) => (
@@ -47,15 +45,21 @@ const App = () => {
 }
 
 const Search = () => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+
   const handleSearchChange = (event) => {
     console.log(event);
-    console.log(event.target.value);
+    setSearchTerm(event.target.value);
   };
 
   return (
     <div>
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" onChange={handleSearchChange} />
+
+      <p>
+        Searching for <strong>{searchTerm}</strong>
+      </p>
     </div>
   );
 }
