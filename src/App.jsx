@@ -6,7 +6,7 @@ const formMessage = (welcomeObj) => (
 );
 
 const App = () => {
-  const stories = [
+  const allStories = [
     {
       title: 'React',
       url: 'https://reactjs.org/',
@@ -25,37 +25,47 @@ const App = () => {
     }
   ];
 
+  const [selectedStories, setSelectedStories] = React.useState(allStories);
+
   const welcome = {
     greeting: 'Hey',
     title: 'I am React'
+  };
+
+  const handleSearch = (event) => {
+    // console.log(event.target.value);
+    const filteredStories = allStories.filter((s) => {
+      return s.title.includes(event.target.value)
+    });
+    setSelectedStories(filteredStories);
   };
 
   return (
     <div>
       <h1>{formMessage(welcome)}</h1>
 
-      <Search />
+      <Search onSearch={handleSearch} />
 
       <hr />
 
-      <List list={stories} />
+      <List list={selectedStories} />
 
     </div>
   );
 }
 
-const Search = () => {
+const Search = (props) => {
   const [searchTerm, setSearchTerm] = React.useState('');
 
-  const handleSearchChange = (event) => {
-    console.log(event);
+  const handleChange = (event) => {
     setSearchTerm(event.target.value);
+    props.onSearch(event);
   };
 
   return (
     <div>
       <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={handleSearchChange} />
+      <input id="search" type="text" onChange={handleChange} />
 
       <p>
         Searching for <strong>{searchTerm}</strong>
